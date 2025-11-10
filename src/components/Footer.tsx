@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FaGithub, FaQrcode } from "react-icons/fa";
 import { FiCopy } from "react-icons/fi";
 import { nip19 } from "nostr-tools";
-import type { NProfile, ProfilePointer } from "nostr-tools/nip19";
+import type { ProfilePointer } from "nostr-tools/nip19";
 
 function Footer() {
   const [copied, setCopied] = useState(false);
