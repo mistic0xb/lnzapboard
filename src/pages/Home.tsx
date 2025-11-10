@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router";
 import RetroFrame from "../components/Frame";
+import { FiTarget } from "react-icons/fi";
+import { BsLightning, BsPerson } from "react-icons/bs";
 
 function Home() {
   const navigate = useNavigate();
@@ -25,8 +27,10 @@ function Home() {
           </button>
 
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            <div className="bg-black border-2 border-yellow-500 p-6 text-center">
-              <div className="text-4xl mb-2 text-brightGreen">🎯</div>
+            <div className="bg-black flex flex-col justify-center items-center border-2 border-yellow-500 p-6 text-center">
+              <div className="text-4xl text-center text-brightGreen mb-3">
+                <FiTarget />
+              </div>
               <h3 className="text-yellow-300 font-bold mb-2 uppercase">
                 Simple Setup
               </h3>
@@ -35,8 +39,10 @@ function Home() {
               </p>
             </div>
 
-            <div className="bg-black border-2 border-yellow-500 p-6 text-center">
-              <div className="text-4xl mb-2 text-brightGreen">⚡</div>
+            <div className="bg-black border-2 border-yellow-500 p-6 flex flex-col items-center justify-center text-center">
+              <div className="text-4xl mb-3 text-brightGreen">
+                <BsLightning />
+              </div>
               <h3 className="text-yellow-300 font-bold mb-2 uppercase">
                 Real-time Messages
               </h3>
@@ -45,8 +51,10 @@ function Home() {
               </p>
             </div>
 
-            <div className="bg-black border-2 border-yellow-500 p-6 text-center">
-              <div className="text-4xl mb-2 text-brightGreen">🔒</div>
+            <div className="bg-black border-2 border-yellow-500 p-6 flex flex-col items-center justify-center text-center">
+              <div className="text-4xl mb-3 text-brightGreen">
+                <BsPerson />
+              </div>
               <h3 className="text-yellow-300 font-bold mb-2 uppercase">
                 No Account Needed
               </h3>

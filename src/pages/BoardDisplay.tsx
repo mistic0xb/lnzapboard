@@ -114,26 +114,21 @@ function BoardDisplay() {
 
   if (loading) {
     return (
-      <RetroFrame>
-        <div className="text-yellow-300 text-xl font-mono">
+        <div className="min-h-screen text-yellow-300 text-xl font-mono flex justify-center items-center">
           Loading board...
         </div>
-      </RetroFrame>
     );
   }
 
   if (error || !boardConfig) {
     return (
-      <RetroFrame>
-        <div className="text-red-400 text-xl font-mono">
+        <div className="min-h-screen text-red-400 text-xl font-mono">
           {error || "Board not found"}
         </div>
-      </RetroFrame>
     );
   }
 
   return (
-    <RetroFrame>
       <div className="min-h-screen bg-black p-8 flex flex-col items-center">
         <div className="w-full max-w-7xl">
           {/* Header */}
@@ -284,7 +279,6 @@ function BoardDisplay() {
           </div>
         </div>
       </div>
-    </RetroFrame>
   );
 }
 
