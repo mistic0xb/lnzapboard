@@ -18,7 +18,6 @@ function CreateBoard() {
 
   // Board settings
   const [displayName, setDisplayName] = useState("");
-  const [lightningAddress, setLightningAddress] = useState("");
   const [minZapAmount, setMinZapAmount] = useState(1000);
 
   // NWC string + password
@@ -29,7 +28,7 @@ function CreateBoard() {
 
   // Load existing boards from localStorage
   const [prevBoards, setPrevBoards] = useState<StoredBoard[]>([]);
-  const [selectedBoard, setSelectedBoard] = useState<StoredBoard>(); 
+  const [selectedBoard, setSelectedBoard] = useState<StoredBoard>();
   const [selectedBoardPassword, setSelectedBoardPassword] = useState("");
 
   useEffect(() => {
@@ -41,19 +40,9 @@ function CreateBoard() {
 
   const handleNext = async () => {
     if (!displayName.trim()) setError("Please enter a board name");
-    if (!lightningAddress.trim())
-      setError("Please enter your Lightning address");
 
     setError("");
     setIsValidating(false);
-
-    const validation = await validateLightningAddress(lightningAddress);
-
-    if (!validation.valid) {
-      setError(validation.error || "Invalid Lightning address");
-      setIsValidating(false);
-      return;
-    }
 
     setIsValidating(false);
     setStep("nwc");
@@ -73,6 +62,20 @@ function CreateBoard() {
       const nwcValidation = await validateNWC(nwcString);
       if (!nwcValidation.valid) {
         throw new Error(nwcValidation.error || "Invalid NWC connection");
+      }
+
+      // Step : Extract lub16 from nwc
+      const lightningAddress =
+        new URL(
+          nwcString.replace("nostr+walletconnect://", "https://")
+        ).searchParams.get("lud16") || "";
+
+      const validation = await validateLightningAddress(lightningAddress);
+
+      if (!validation.valid) {
+        setError(validation.error || "Invalid Lightning address");
+        setIsValidating(false);
+        return;
       }
 
       // Step 2: Generate ephemeral keys
@@ -204,22 +207,6 @@ function CreateBoard() {
                     placeholder="Bitcoin Conference Q&A"
                     className="w-full px-4 py-3 bg-black text-white placeholder-gray-400 border-2 border-yellow-400 focus:outline-none focus:border-brightGreen"
                   />
-                </div>
-
-                <div>
-                  <label className="block text-yellow-300 mb-2">
-                    Lightning Address
-                  </label>
-                  <input
-                    type="text"
-                    value={lightningAddress}
-                    onChange={(e) => setLightningAddress(e.target.value)}
-                    placeholder="mist@coinos.io"
-                    className="w-full px-4 py-3 bg-black text-white placeholder-gray-400 border-2 border-yellow-400 focus:outline-none focus:border-brightGreen"
-                  />
-                  <p className="text-white/60 text-sm mt-2">
-                    Where zaps will be sent
-                  </p>
                 </div>
 
                 <div>
