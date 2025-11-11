@@ -155,9 +155,9 @@ function PaymentPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <RetroFrame>
-          <div className="text-white text-xl">Loading...</div>
+      <div className="min-h-screen bg-black flex items-center justify-center px-2 sm:px-0">
+        <RetroFrame className="w-full max-w-md sm:max-w-lg px-2 sm:px-6">
+          <div className="text-white text-lg sm:text-xl">Loading...</div>
         </RetroFrame>
       </div>
     );
@@ -165,9 +165,9 @@ function PaymentPage() {
 
   if (error && !boardConfig) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center p-4">
-        <RetroFrame>
-          <div className="bg-red-500/20 border border-red-500 text-red-200 px-6 py-4 ">
+      <div className="min-h-screen bg-black flex items-center justify-center px-2 sm:px-0">
+        <RetroFrame className="w-full max-w-md sm:max-w-lg px-2 sm:px-6 py-4 sm:py-8">
+          <div className="bg-red-500/20 border border-red-500 text-red-200 px-4 py-3 text-sm sm:text-base rounded-md">
             {error}
           </div>
         </RetroFrame>
@@ -176,20 +176,22 @@ function PaymentPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
-      <RetroFrame className="max-w-lg w-full sm:w-lg">
+    <div className="min-h-screen bg-black flex items-center justify-center px-1 sm:px-0">
+      <RetroFrame className="w-full max-w-lg sm:w-lg px-2 sm:px-8 py-3 sm:py-8">
         {!invoice ? (
           // Step 1: Input form
-          <div className="bg-white/10 backdrop-blur-lg p-8">
-            <h2 className="text-3xl font-bold text-white mb-2">
+          <div className="bg-white/10 backdrop-blur-lg p-3 sm:p-8 rounded-lg">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
               ⚡ Send a Zap
             </h2>
-            <p className="text-gray-300 mb-6">to {boardConfig?.displayName}</p>
+            <p className="text-gray-300 mb-6 text-sm sm:text-base">
+              to {boardConfig?.displayName}
+            </p>
 
             <div className="space-y-6">
               {/* Username */}
               <div>
-                <label className="block text-white mb-2 font-medium">
+                <label className="block text-white mb-2 font-medium text-sm sm:text-base">
                   Your Name (optional)
                 </label>
                 <input
@@ -198,15 +200,16 @@ function PaymentPage() {
                   onChange={(e) => setDisplayName(e.target.value)}
                   placeholder="Anonymous"
                   maxLength={50}
-                  className="w-full px-4 py-3 bg-white/20 text-white placeholder-gray-400 border border-white/30 focus:outline-none focus:border-blue-500 text-lg"
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-white/20 text-white placeholder-gray-400 border border-white/30 focus:outline-none focus:border-blue-500 text-base sm:text-lg rounded-md"
                 />
-                <p className="text-gray-400 text-sm mt-2">
+                <p className="text-gray-400 text-xs sm:text-sm mt-2">
                   Leave empty to post anonymously
                 </p>
               </div>
-              {/* Amount selection with preset buttons */}
+
+              {/* Amount selection */}
               <div>
-                <label className="block text-white mb-2 font-medium">
+                <label className="block text-white mb-2 font-medium text-sm sm:text-base">
                   Amount (sats)
                 </label>
 
@@ -217,7 +220,7 @@ function PaymentPage() {
                         <button
                           key={preset}
                           onClick={() => setAmount(preset)}
-                          className={`px-2 py-1 font-bold text-lg transition-all ${
+                          className={`px-2 py-1 font-bold text-base sm:text-lg rounded-md transition-all ${
                             amount === preset
                               ? "bg-orange-500 text-white border-2 border-orange-400"
                               : "bg-white/20 text-white border border-white/30 hover:bg-white/30"
@@ -228,7 +231,7 @@ function PaymentPage() {
                       ))}
                       <button
                         onClick={() => setShowCustomAmount(true)}
-                        className="w-full px-2 py-1 bg-white/10 text-white border border-white/30 hover:bg-white/20 text-sm transition-colors"
+                        className="w-full px-2 py-1 bg-white/10 text-white border border-white/30 hover:bg-white/20 text-sm transition-colors rounded-md"
                       >
                         Custom Amount
                       </button>
@@ -241,24 +244,25 @@ function PaymentPage() {
                       value={amount}
                       onChange={(e) => setAmount(Number(e.target.value))}
                       min={boardConfig?.minZapAmount}
-                      className="w-full px-4 py-3 bg-white/20 text-white placeholder-gray-400 border border-white/30 focus:outline-none focus:border-orange-500 text-lg"
+                      className="w-full px-4 py-2 sm:py-3 bg-white/20 text-white placeholder-gray-400 border border-white/30 focus:outline-none focus:border-orange-500 text-base sm:text-lg rounded-md"
                     />
                     <button
                       onClick={() => setShowCustomAmount(false)}
-                      className="w-full px-4 py-2 bg-white/10 text-white border border-white/30 hover:bg-white/20 text-sm transition-colors"
+                      className="w-full px-4 py-2 bg-white/10 text-white border border-white/30 hover:bg-white/20 text-sm transition-colors rounded-md"
                     >
                       Back to Presets
                     </button>
                   </div>
                 )}
 
-                <p className="text-gray-400 text-sm mt-2">
+                <p className="text-gray-400 text-xs sm:text-sm mt-2">
                   Minimum: {boardConfig?.minZapAmount} sats
                 </p>
               </div>
 
+              {/* Message */}
               <div>
-                <label className="block text-white mb-2 font-medium">
+                <label className="block text-white mb-2 font-medium text-sm sm:text-base">
                   Your Message
                 </label>
                 <textarea
@@ -267,15 +271,15 @@ function PaymentPage() {
                   placeholder="Ask a question or leave a comment..."
                   rows={4}
                   maxLength={500}
-                  className="w-full px-4 py-3  bg-white/20 text-white placeholder-gray-400 border border-white/30 focus:outline-none focus:border-yellow-500 resize-none"
+                  className="w-full px-4 py-3 bg-white/20 text-white placeholder-gray-400 border border-white/30 focus:outline-none focus:border-yellow-500 resize-none rounded-md"
                 />
-                <p className="text-gray-400 text-sm mt-2">
+                <p className="text-gray-400 text-xs sm:text-sm mt-2">
                   {message.length}/500 characters
                 </p>
               </div>
 
               {error && (
-                <div className="bg-red-500/20 border border-red-500 text-red-200 px-4 py-3 ">
+                <div className="bg-red-500/20 border border-red-500 text-red-200 px-4 py-3 text-sm sm:text-base rounded-md">
                   {error}
                 </div>
               )}
@@ -283,14 +287,14 @@ function PaymentPage() {
               <button
                 onClick={handleSendZap}
                 disabled={processing}
-                className="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-gray-600 text-white font-bold py-4  text-lg transition-colors"
+                className="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-gray-600 text-white font-bold py-3 sm:py-4 text-base sm:text-lg transition-colors rounded-md"
               >
                 {processing ? "Generating Invoice..." : `Zap ${amount} sats ⚡`}
               </button>
 
               <button
                 onClick={() => navigate(`/board/${boardId}`)}
-                className="w-full bg-white/20 hover:bg-white/30 text-white font-bold py-3  transition-colors"
+                className="w-full bg-white/20 hover:bg-white/30 text-white font-bold py-3 text-base transition-colors rounded-md"
               >
                 Back to Board
               </button>
@@ -298,22 +302,21 @@ function PaymentPage() {
           </div>
         ) : (
           // Step 2: Show invoice
-          <div className="bg-white/10 backdrop-blur-lg p-8 text-center">
-            {/* Conditional rendering based on payment success */}
+          <div className="bg-white/10 backdrop-blur-lg p-3 sm:p-8 text-center rounded-lg">
             {!paymentSuccess ? (
-              // Show QR code while waiting for payment
               <>
-                <h2 className="text-3xl font-bold text-white mb-2">
+                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                   Scan to Pay
                 </h2>
-                <p className="text-gray-300 mb-6">
+                <p className="text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">
                   {amount.toLocaleString()} sats
                 </p>
+
                 <div className="flex flex-col items-center justify-center pb-3 gap-2">
-                  <div className="bg-white p-6">
+                  <div className="bg-white p-4 sm:p-6 rounded-lg w-full max-w-xs">
                     <QRCodeSVG
                       value={invoice}
-                      size={300}
+                      size={220}
                       level="M"
                       className="mx-auto"
                       style={{ width: "100%", height: "auto" }}
@@ -321,21 +324,21 @@ function PaymentPage() {
                   </div>
                   {!copied ? (
                     <div
-                      className="flex gap-2 items-center text-sm cursor-pointer text-yellow-400 hover:text-yellow-300 transition-colors"
+                      className="flex gap-2 items-center text-xs sm:text-sm cursor-pointer text-yellow-400 hover:text-yellow-300 transition-colors"
                       onClick={handleCopy}
                     >
-                      copy invoice addr <FaCopy size={20} />
+                      Copy invoice <FaCopy size={18} />
                     </div>
                   ) : (
-                    <div className="text-green-300 text-sm text-center md:text-right">
-                      {copied ? "lnrunl invoice copied!" : ""}
+                    <div className="text-green-300 text-xs sm:text-sm text-center">
+                      lnurl invoice copied!
                     </div>
                   )}
                 </div>
 
                 <button
                   onClick={openInWallet}
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4  text-lg mb-3 transition-colors"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 sm:py-4 text-base sm:text-lg mb-3 transition-colors rounded-md"
                 >
                   Open in Wallet
                 </button>
@@ -345,35 +348,33 @@ function PaymentPage() {
                     setInvoice(null);
                     setMessage("");
                   }}
-                  className="w-full bg-white/20 hover:bg-white/30 text-white font-bold py-3  transition-colors"
+                  className="w-full bg-white/20 hover:bg-white/30 text-white font-bold py-3 text-base transition-colors rounded-md"
                 >
                   Create Another Zap
                 </button>
 
-                <p className="text-gray-400 text-sm mt-6">
+                <p className="text-gray-400 text-xs sm:text-sm mt-4">
                   Waiting for payment...
                 </p>
               </>
             ) : (
-              // Show success animation when payment is detected
-              <div className="flex flex-col items-center justify-center py-12">
-                {/* Animated checkmark with scale and fade-in animation */}
+              <div className="flex flex-col items-center justify-center py-8 sm:py-12">
                 <div className="animate-[scale-in_0.5s_ease-out]">
                   <FaCheckCircle
                     className="text-green-400 animate-pulse"
-                    size={120}
+                    size={100}
                   />
                 </div>
 
-                <h2 className="text-4xl font-bold text-green-400 mt-6 mb-2 animate-[fade-in_0.5s_ease-out_0.3s_both]">
+                <h2 className="text-3xl sm:text-4xl font-bold text-green-400 mt-6 mb-2 animate-[fade-in_0.5s_ease-out_0.3s_both]">
                   Payment Successful!
                 </h2>
 
-                <p className="text-gray-300 text-lg animate-[fade-in_0.5s_ease-out_0.5s_both]">
+                <p className="text-gray-300 text-base sm:text-lg animate-[fade-in_0.5s_ease-out_0.5s_both]">
                   Your message has been sent ⚡
                 </p>
 
-                <p className="text-gray-400 text-sm mt-4 animate-[fade-in_0.5s_ease-out_0.7s_both]">
+                <p className="text-gray-400 text-xs sm:text-sm mt-4 animate-[fade-in_0.5s_ease-out_0.7s_both]">
                   Redirecting to board...
                 </p>
               </div>
