@@ -170,6 +170,26 @@ function CreateBoard() {
           >
             Use Board
           </button>
+          {/* Added Delete Board button */}
+          <button
+            onClick={() => {
+              const confirmDelete = confirm(
+                `Are you sure you want to delete "${selectedBoard.config.displayName}"?`
+              );
+              if (!confirmDelete) return;
+
+              const updatedBoards = prevBoards.filter(
+                (b) => b.boardId !== selectedBoard.boardId
+              );
+              localStorage.setItem("boards", JSON.stringify(updatedBoards));
+              setPrevBoards(updatedBoards);
+              setSelectedBoard(undefined);
+              setError("");
+            }}
+            className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 uppercase border-2 border-red-400 transition-all duration-200"
+          >
+            Delete Board
+          </button>
         </form>
       )}
 
@@ -290,8 +310,8 @@ function CreateBoard() {
                 </div>
               </div>
             )}
+            {/* render previous board step */}
             {step === "usePrevious" && renderUsePreviousStep()}{" "}
-            {/* Updated: render previous board step */}
           </div>
         </RetroFrame>
       </div>
