@@ -167,7 +167,7 @@ function PaymentPage() {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center px-2 sm:px-0">
         <RetroFrame className="w-full max-w-md sm:max-w-lg px-2 sm:px-6 py-4 sm:py-8">
-          <div className="bg-red-500/20 border border-red-500 text-red-200 px-4 py-3 text-sm sm:text-base rounded-md">
+          <div className="bg-red-500/20 border border-red-500 text-red-200 px-4 py-3 text-sm sm:text-base">
             {error}
           </div>
         </RetroFrame>
@@ -180,7 +180,7 @@ function PaymentPage() {
       <RetroFrame className="w-full max-w-lg sm:w-lg px-2 sm:px-8 py-3 sm:py-8">
         {!invoice ? (
           // Step 1: Input form
-          <div className="bg-white/10 backdrop-blur-lg p-3 sm:p-8 rounded-lg">
+          <div className="bg-white/10 backdrop-blur-lg p-3 sm:p-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
               ⚡ Send a Zap
             </h2>
@@ -200,7 +200,7 @@ function PaymentPage() {
                   onChange={(e) => setDisplayName(e.target.value)}
                   placeholder="Anonymous"
                   maxLength={50}
-                  className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-white/20 text-white placeholder-gray-400 border border-white/30 focus:outline-none focus:border-blue-500 text-base sm:text-lg rounded-md"
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-white/20 text-white placeholder-gray-400 border border-white/30 focus:outline-none focus:border-blue-500 text-base sm:text-lg"
                 />
                 <p className="text-gray-400 text-xs sm:text-sm mt-2">
                   Leave empty to post anonymously
@@ -220,7 +220,7 @@ function PaymentPage() {
                         <button
                           key={preset}
                           onClick={() => setAmount(preset)}
-                          className={`px-2 py-1 font-bold text-base sm:text-lg rounded-md transition-all ${
+                          className={`px-2 py-1 font-bold text-base sm:text-lg transition-all ${
                             amount === preset
                               ? "bg-orange-500 text-white border-2 border-orange-400"
                               : "bg-white/20 text-white border border-white/30 hover:bg-white/30"
@@ -231,7 +231,7 @@ function PaymentPage() {
                       ))}
                       <button
                         onClick={() => setShowCustomAmount(true)}
-                        className="w-full px-2 py-1 bg-white/10 text-white border border-white/30 hover:bg-white/20 text-sm transition-colors rounded-md"
+                        className="w-full px-2 py-1 bg-white/10 text-white border border-white/30 hover:bg-white/20 text-sm transition-colors"
                       >
                         Custom Amount
                       </button>
@@ -244,11 +244,11 @@ function PaymentPage() {
                       value={amount}
                       onChange={(e) => setAmount(Number(e.target.value))}
                       min={boardConfig?.minZapAmount}
-                      className="w-full px-4 py-2 sm:py-3 bg-white/20 text-white placeholder-gray-400 border border-white/30 focus:outline-none focus:border-orange-500 text-base sm:text-lg rounded-md"
+                      className="w-full px-4 py-2 sm:py-3 bg-white/20 text-white placeholder-gray-400 border border-white/30 focus:outline-none focus:border-orange-500 text-base sm:text-lg"
                     />
                     <button
                       onClick={() => setShowCustomAmount(false)}
-                      className="w-full px-4 py-2 bg-white/10 text-white border border-white/30 hover:bg-white/20 text-sm transition-colors rounded-md"
+                      className="w-full px-4 py-2 bg-white/10 text-white border border-white/30 hover:bg-white/20 text-sm transition-colors "
                     >
                       Back to Presets
                     </button>
@@ -271,7 +271,7 @@ function PaymentPage() {
                   placeholder="Ask a question or leave a comment..."
                   rows={4}
                   maxLength={500}
-                  className="w-full px-4 py-3 bg-white/20 text-white placeholder-gray-400 border border-white/30 focus:outline-none focus:border-yellow-500 resize-none rounded-md"
+                  className="w-full px-4 py-3 bg-white/20 text-white placeholder-gray-400 border border-white/30 focus:outline-none focus:border-yellow-500 resize-none"
                 />
                 <p className="text-gray-400 text-xs sm:text-sm mt-2">
                   {message.length}/500 characters
@@ -279,7 +279,7 @@ function PaymentPage() {
               </div>
 
               {error && (
-                <div className="bg-red-500/20 border border-red-500 text-red-200 px-4 py-3 text-sm sm:text-base rounded-md">
+                <div className="bg-red-500/20 border border-red-500 text-red-200 px-4 py-3 text-sm sm:text-base">
                   {error}
                 </div>
               )}
@@ -287,14 +287,14 @@ function PaymentPage() {
               <button
                 onClick={handleSendZap}
                 disabled={processing}
-                className="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-gray-600 text-white font-bold py-3 sm:py-4 text-base sm:text-lg transition-colors rounded-md"
+                className="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-gray-600 text-white font-bold py-3 sm:py-4 text-base sm:text-lg transition-colors"
               >
                 {processing ? "Generating Invoice..." : `Zap ${amount} sats ⚡`}
               </button>
 
               <button
                 onClick={() => navigate(`/board/${boardId}`)}
-                className="w-full bg-white/20 hover:bg-white/30 text-white font-bold py-3 text-base transition-colors rounded-md"
+                className="w-full bg-white/20 hover:bg-white/30 text-white font-bold py-3 text-base transition-colors"
               >
                 Back to Board
               </button>
@@ -302,7 +302,7 @@ function PaymentPage() {
           </div>
         ) : (
           // Step 2: Show invoice
-          <div className="bg-white/10 backdrop-blur-lg p-3 sm:p-8 text-center rounded-lg">
+          <div className="bg-white/10 backdrop-blur-lg p-3 sm:p-8 text-center">
             {!paymentSuccess ? (
               <>
                 <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
@@ -313,7 +313,7 @@ function PaymentPage() {
                 </p>
 
                 <div className="flex flex-col items-center justify-center pb-3 gap-2">
-                  <div className="bg-white p-4 sm:p-6 rounded-lg w-full max-w-xs">
+                  <div className="bg-white p-4 sm:p-6 w-full max-w-xs">
                     <QRCodeSVG
                       value={invoice}
                       size={220}
@@ -338,7 +338,7 @@ function PaymentPage() {
 
                 <button
                   onClick={openInWallet}
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 sm:py-4 text-base sm:text-lg mb-3 transition-colors rounded-md"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 sm:py-4 text-base sm:text-lg mb-3 transition-colors"
                 >
                   Open in Wallet
                 </button>
@@ -348,7 +348,7 @@ function PaymentPage() {
                     setInvoice(null);
                     setMessage("");
                   }}
-                  className="w-full bg-white/20 hover:bg-white/30 text-white font-bold py-3 text-base transition-colors rounded-md"
+                  className="w-full bg-white/20 hover:bg-white/30 text-white font-bold py-3 text-base transition-colors"
                 >
                   Create Another Zap
                 </button>
