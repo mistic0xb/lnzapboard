@@ -128,20 +128,32 @@ function CreateBoard() {
     <div className="space-y-4">
       <h2 className="text-yellow-300 font-bold mb-2">Select a Board</h2>
 
-      {prevBoards.map((board) => (
-        <div key={board.boardId} className="space-y-2">
-          <button
-            onClick={() => {
-              setSelectedBoard(board); // Updated: select board to show password input
-              setSelectedBoardPassword("");
-              setError("");
-            }}
-            className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 uppercase border-2 border-yellow-300 transition-all duration-200"
-          >
-            {board.config.displayName}
-          </button>
-        </div>
-      ))}
+      {prevBoards.map((board) => {
+        const isSelected = selectedBoard?.boardId === board.boardId;
+        return (
+          <div key={board.boardId} className="space-y-2">
+            <button
+              onClick={() => {
+                setSelectedBoard(board);
+                setSelectedBoardPassword("");
+                setError("");
+              }}
+              // highlight and show-arrow
+              className={`w-full flex justify-between items-center font-bold py-2 px-3 uppercase border-2 transition-all duration-200 ${
+                isSelected
+                  ? 
+                    "bg-yellow-100 text-black border-yellow-300"
+                  : 
+                    "bg-yellow-400 hover:bg-yellow-500 text-black border-yellow-300"
+              }`}
+            >
+              <span>{board.config.displayName}</span>
+              {/*  Show arrow if selected */}
+              {isSelected && <span className="text-black text-lg">◀</span>}
+            </button>
+          </div>
+        );
+      })}
 
       {selectedBoard && (
         <form onSubmit={(e) => e.preventDefault()} className="space-y-2 mt-4">
@@ -170,7 +182,8 @@ function CreateBoard() {
           >
             Use Board
           </button>
-          {/* Added Delete Board button */}
+
+          {/* Delete button */}
           <button
             onClick={() => {
               const confirmDelete = confirm(
