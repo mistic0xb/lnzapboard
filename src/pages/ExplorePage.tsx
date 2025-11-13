@@ -37,20 +37,24 @@ export default function ExploreBoards() {
         </div>
 
         {loading ? (
-          <div className="text-center text-yellow-400 py-12">Loading boards...</div>
+          <div className="text-center text-yellow-400 py-12">
+            Loading boards...
+          </div>
         ) : boards.length === 0 ? (
           <div className="text-center text-gray-400 py-12">
             No boards found yet.
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {boards.map((board) => (
-              <BoardCard
-                key={board.boardId}
-                board={board}
-                onClick={() => navigate(`/board/${board.boardId}`)}
-              />
-            ))}
+            {boards
+              .filter((board: BoardConfig) => board.boardName)
+              .map((board: BoardConfig) => (
+                <BoardCard
+                  key={board.boardId}
+                  board={board}
+                  onClick={() => navigate(`/board/${board.boardId}`)}
+                />
+              ))}
           </div>
         )}
       </RetroFrame>
