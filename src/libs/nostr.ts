@@ -35,6 +35,7 @@ export async function publishBoardConfig(
             ['title', config.displayName],
             ['ln', config.lightningAddress],
             ['min_zap', config.minZapAmount.toString()],
+            ['t', 'zapboard']
         ],
         content: JSON.stringify({
             displayName: config.displayName,
@@ -108,6 +109,64 @@ export async function fetchBoardConfig(
                 }
             }
         );
+    });
+}
+
+//  Fetch all board configs 
+export async function fetchAllBoards(): Promise<BoardConfig[]> {
+    const pool = getPool();
+
+    return new Promise((resolve) => {
+        const boards: BoardConfig[] = [];
+        const seen = new Set<string>();
+        let sub: any;
+
+        const timeout = setTimeout(() => {
+            if (sub) sub.close();
+            resolve(boards);
+        }, 5000);
+
+        // Relay-indexed tag filtering 
+        const filter: Filter = {
+            kinds: [30078],
+            '#t': ['zapboard'],
+            limit: 100,
+        };
+
+        sub = pool.subscribeMany(DEFAULT_RELAYS, filter, {
+            onevent(event: Event) {
+                if (seen.has(event.id)) return;
+                seen.add(event.id);
+
+                try {
+                    const content = JSON.parse(event.content);
+                    const boardIdTag = event.tags.find(t => t[0] === 'd');
+                    const lnTag = event.tags.find(t => t[0] === 'ln');
+                    const minZapTag = event.tags.find(t => t[0] === 'min_zap');
+
+                    const boardId = boardIdTag?.[1];
+                    if (!boardId) return;
+
+                    const config: BoardConfig = {
+                        boardId,
+                        displayName: content.displayName,
+                        minZapAmount: parseInt(minZapTag?.[1] || '1000'),
+                        lightningAddress: lnTag?.[1] || '',
+                        creatorPubkey: event.pubkey,
+                        createdAt: content.createdAt,
+                    };
+
+                    boards.push(config);
+                } catch (err) {
+                    console.error('Failed to parse board event:', err);
+                }
+            },
+            oneose() {
+                clearTimeout(timeout);
+                if (sub) sub.close();
+                resolve(boards);
+            }
+        });
     });
 }
 
