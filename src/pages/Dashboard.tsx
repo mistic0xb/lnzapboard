@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router";
 import { createNWCInstance } from "../libs/nwc";
-import type { BoardConfig } from "../types";
+import type { BoardConfig } from "../types/types";
 import RetroFrame from "../components/Frame";
 
 function Dashboard() {

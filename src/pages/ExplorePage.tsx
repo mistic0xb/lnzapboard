@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchAllBoards } from "../libs/nostr";
-import type { BoardConfig } from "../types";
+import type { BoardConfig } from "../types/types";
 import BoardCard from "../components/BoardCard";
 import RetroFrame from "../components/Frame";
 import { useNavigate } from "react-router";

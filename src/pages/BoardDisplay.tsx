@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { useParams } from "react-router";
 import { QRCodeSVG } from "qrcode.react";
 import { fetchBoardConfig, subscribeToZapMessages } from "../libs/nostr";
-import type { BoardConfig, ZapMessage } from "../types";
+import type { BoardConfig, ZapMessage } from "../types/types";
 
 import generalMsgSfx from "../assets/sounds/general-msg.wav";
 import top1Sfx from "../assets/sounds/top1.wav";

@@ -1,6 +1,6 @@
 import { SimplePool, finalizeEvent } from 'nostr-tools';
 import type { Event, Filter } from 'nostr-tools';
-import type { BoardConfig, ZapMessage } from '../types';
+import type { BoardConfig, ZapMessage } from '../types/types';
 import { parseZapReceipt } from './nip57';
 
 export const DEFAULT_RELAYS = [

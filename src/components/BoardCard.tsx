@@ -1,5 +1,5 @@
 import { FaBoltLightning } from "react-icons/fa6";
-import type { BoardConfig } from "../types";
+import type { BoardConfig } from "../types/types";
 
 interface BoardCardProps {
   board: BoardConfig;

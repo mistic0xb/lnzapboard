@@ -7,7 +7,7 @@ import {
   generateBoardId,
   generateEphemeralKeys,
 } from "../libs/crypto";
-import type { BoardConfig, StoredBoard } from "../types";
+import type { BoardConfig, StoredBoard } from "../types/types";
 import { validateNWC } from "../libs/nwc";
 import { publishBoardConfig, verifyUserEligibility } from "../libs/nostr";
 import RetroFrame from "../components/Frame";

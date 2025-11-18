@@ -1,5 +1,5 @@
 import { NostrWebLNProvider } from '@getalby/sdk'
-import type { NWCInfo } from '../types';
+import type { NWCInfo } from '../types/types';
 
 /**
  * Parse NWC connection string

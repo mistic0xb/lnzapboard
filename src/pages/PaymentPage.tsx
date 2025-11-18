@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router";
 import { QRCodeSVG } from "qrcode.react";
 import { fetchBoardConfig, monitorZapReceipts } from "../libs/nostr";
 import { generateInvoice } from "../libs/nip57";
-import type { BoardConfig, ZapMessage } from "../types";
+import type { BoardConfig, ZapMessage } from "../types/types";
 import RetroFrame from "../components/Frame";
 import { FaCopy, FaCheckCircle } from "react-icons/fa";
 
