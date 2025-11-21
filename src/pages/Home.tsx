@@ -16,18 +16,17 @@ function Home() {
           {/* Hero Section */}
           <div className="text-center mb-16 sm:mb-20 md:mb-24 lg:mb-28">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 sm:mb-8 border border-violet-300/20 bg-violet-300/5 backdrop-blur-sm text-violet-300 text-xs sm:text-sm md:text-base proj:text-2xl uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 sm:mb-8 border border-violet-300/20 bg-violet-300/5 backdrop-blur-sm text-violet-300 text-xs sm:text-sm md:text-md proj:text-2xl uppercase tracking-wider">
               <BsLightning className="text-yellow-text" />
               <span>Powered by Bitcoin Lightning and Nostr</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl proj:text-[12rem] font-bold mb-6 sm:mb-8 md:mb-10 leading-tight">
-              <span className="text-yellow-text">Lightning</span>
-              <br />
-              <span className="text-white">Zap Board</span>
+            <h1 className="text-6xl xl:max-proj:text-7xl proj:text-[12rem] font-bold mb-2 sm:max-md:mb-4 md:mb-6 leading-tight">
+              <span className="text-yellow-text">Zap</span>
+              <span className="text-violet-200">it</span>
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl proj:text-5xl text-gray-400 mb-10 sm:mb-12 md:mb-16 leading-relaxed max-w-4xl mx-auto px-4">
+            <p className="text-md sm:max-md:text-base md:max-lg:text-lg lg:max-proj:text-2xl proj:text-5xl text-gray-400 mb-8 sm:max-md:mb-10 md:mb-14 leading-relaxed max-w-4xl mx-auto px-4">
               Create live message boards powered by instant Bitcoin payments.
               <span className="text-yellow-text/80">
                 {" "}
@@ -40,7 +39,7 @@ function Home() {
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-5 md:gap-6">
               <button
                 onClick={() => navigate("/create")}
-                className="group w-full sm:w-auto bg-yellow-text hover:bg-yellow-text/90 text-blackish font-bold py-4 sm:py-5 md:py-6 proj:py-10 px-8 sm:px-10 md:px-12 lg:px-14 proj:px-24 text-base sm:text-lg md:text-xl lg:text-2xl proj:text-4xl uppercase tracking-wide transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,223,32,0.4)] transform hover:scale-[1.02] flex items-center justify-center gap-3 cursor-pointer"
+                className="group w-full sm:w-auto bg-yellow-text hover:bg-yellow-text/90 text-blackish font-bold py-2 sm:max-md:py-2 md:max-proj:py-6 proj:py-10 px-2 sm:max-md:px-6 md:max-lg:px-8 lg:max-proj:px-10 proj:px-24 text-base md:max-lg:text-lg lg:max-proj:text-xl proj:text-2xl uppercase tracking-wide transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,223,32,0.4)] transform hover:scale-[1.02] flex items-center justify-center gap-3 cursor-pointer"
               >
                 Create Your Board
                 <BsArrowRight className="group-hover:translate-x-1 transition-transform" />
@@ -48,7 +47,7 @@ function Home() {
 
               <button
                 onClick={() => navigate("/explore")}
-                className="w-full sm:w-auto bg-transparent hover:bg-yellow-text/5 text-yellow-text font-bold py-4 sm:py-5 md:py-6 proj:py-10 px-8 sm:px-10 md:px-12 lg:px-14 proj:px-24 text-base sm:text-lg md:text-xl lg:text-2xl proj:text-4xl uppercase tracking-wide border-2 border-yellow-text/50 hover:border-yellow-text transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,223,32,0.2)] cursor-pointer"
+                className="w-full sm:w-auto bg-transparent hover:bg-yellow-text/5 text-yellow-text font-bold py-2 sm:max-md:py-2 md:max-proj:py-6 proj:py-10 px-2 sm:max-md:px-6 md:max-lg:px-8 lg:max-proj:px-10 proj:px-24 text-base md:max-lg:text-lg lg:max-proj:text-xl proj:text-2xl uppercase tracking-wide border-2 border-yellow-text/50 hover:border-yellow-text transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,223,32,0.2)] cursor-pointer"
               >
                 Explore Boards
               </button>

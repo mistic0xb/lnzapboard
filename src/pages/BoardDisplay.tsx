@@ -3,7 +3,13 @@ import { useParams } from "react-router";
 import { QRCodeSVG } from "qrcode.react";
 import { fetchBoardConfig, subscribeToZapMessages } from "../libs/nostr";
 import type { BoardConfig, ZapMessage } from "../types/types";
-import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
+import {
+  FaCheck,
+  FaCopy,
+  FaLink,
+  FaVolumeMute,
+  FaVolumeUp,
+} from "react-icons/fa";
 
 import generalMsgSfx from "../assets/sounds/general-msg.wav";
 import top1Sfx from "../assets/sounds/top1.wav";
@@ -11,6 +17,8 @@ import top2Sfx from "../assets/sounds/top2.wav";
 import top3Sfx from "../assets/sounds/top3.wav";
 import Loading from "../components/Loading";
 import { BsLightning } from "react-icons/bs";
+import { GoVerified } from "react-icons/go";
+import { RiVerifiedBadgeFill } from "react-icons/ri";
 
 const RANK_COLORS = [
   {
@@ -46,6 +54,7 @@ export default function BoardDisplay() {
   const isLeaderboardSoundPlayingRef = useRef(false);
   const [highlightedRows, setHighlightedRows] = useState<string[]>([]);
   const [promotedUsers, setPromotedUsers] = useState<string[]>([]);
+  const [urlCopied, setUrlCopied] = useState(false);
 
   useEffect(() => {
     const loadBoard = async () => {
@@ -179,12 +188,32 @@ export default function BoardDisplay() {
       {/* Full container */}
       <div className="w-full mx-auto space-y-6">
         {/* Board name + volume */}
-        <div className="card-style p-4 flex justify-between items-center">
-          <h2 className="text-2xl lg:max-proj:text-4xl proj:text-8xl  text-center w-full font-semibold text-yellow-300 animate-pulse">
-            {boardConfig.boardName}
+        <div className="card-style p-4 flex sm:flex-row flex-col justify-between items-center gap-4">
+          <h2 className="text-4xl lg:max-proj:text-4xl proj:text-8xl text-center w-full font-semibold text-yellow-300 flex items-center justify-center gap-2">
+            <div className=" flex items-center justify-center gap-2">
+              <span className="animate-pulse">{boardConfig.boardName}</span>
+              {boardConfig.isExplorable && (
+                <RiVerifiedBadgeFill className="text-xl proj:text-7xl text-violet-300" />
+              )}
+            </div>
           </h2>
 
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => {
+                const url = `${window.location.origin}/board/${boardId}`;
+                navigator.clipboard.writeText(url);
+                setUrlCopied(true);
+                setTimeout(() => setUrlCopied(false), 2000);
+              }}
+              className="text-gray-300 hover:text-gray-200 opacity-90 hover:opacity-100 transition-all duration-300"
+              title="Copy board URL"
+            >
+              <FaLink
+                size={20}
+                className="text-gray-400 hover:text-yellow-400/60 ease-in-out transition-all duration-300"
+              />
+            </button>
             <button
               onClick={() => setIsMuted(!isMuted)}
               className="text-violet-300 hover:text-violet-200 opacity-65"
