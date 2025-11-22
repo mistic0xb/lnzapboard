@@ -499,12 +499,12 @@ export default function BoardDisplay() {
 
         {/* Show "Make Board Explorable" button for non-explorable boards */}
         {canUpgrade && (
-          <div className="card-style p-4 border-2 border-yellow-text/30">
+          <div className="card-style p-2 border-2 border-yellow-text/20">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <MdVerified className="text-yellow-text/90 text-2xl shrink-0" />
                 <div>
-                  <p className="text-white font-bold text-sm sm:text-base">
+                  <p className="text-white/90 font-bold text-sm sm:text-base">
                     Want to make this board discoverable? (Premium)
                   </p>
                   <p className="text-gray-400 text-xs sm:text-sm">
@@ -514,7 +514,7 @@ export default function BoardDisplay() {
               </div>
               <button
                 onClick={handleMakeExplorable}
-                className="bg-yellow-text/90 hover:bg-yellow-text text-blackish font-bold py-2 px-6 text-sm whitespace-nowrap transition-all duration-300"
+                className="bg-blackish border border-yellow-400/70 rounded-sm hover:bg-yellow-400 hover:text-blackish text-yellow-400/70 font-bold py-2 px-6 text-sm whitespace-nowrap transition-all duration-300"
               >
                 Make Explorable
               </button>
