@@ -606,6 +606,27 @@ export default function BoardDisplay() {
           </div>
           {/* Right column */}
           <div className="space-y-6">
+            {/* QR Section */}
+            <div className="bg-card-bg p-6 shadow-lg text-center">
+              <h3 className="font-bold text-xl proj:text-4xl text-violet-300 mb-4">Scan to Zap</h3>
+              <a
+                href={`${window.location.origin}/pay/${boardId}`}
+                target="_blank"
+                className="hover:opacity-75"
+              >
+                <QRCodeSVG
+                  value={`${window.location.origin}/pay/${boardId}`}
+                  size={window.innerWidth < 640 ? 180 : window.innerWidth < 2000 ? 290 : 600}
+                  level="M"
+                  bgColor="#ffffff"
+                  fgColor="#000000"
+                  className="mx-auto border-2 border-white"
+                />
+              </a>
+              <div className="text-yellow-300 mt-3 proj:text-3xl">
+                Min: {boardConfig.minZapAmount} sats
+              </div>
+            </div>
             {/* Leaderboard */}
             <div className="bg-card-bg p-6 rounded-lg">
               <h3 className="font-bold text-xl proj:text-6xl text-violet-300/90 mb-6 flex items-center justify-center">
@@ -659,28 +680,6 @@ export default function BoardDisplay() {
                     </div>
                   );
                 })}
-              </div>
-            </div>
-
-            {/* QR Section */}
-            <div className="bg-card-bg p-6 shadow-lg text-center">
-              <h3 className="font-bold text-xl proj:text-4xl text-violet-300 mb-4">Scan to Zap</h3>
-              <a
-                href={`${window.location.origin}/pay/${boardId}`}
-                target="_blank"
-                className="hover:opacity-75"
-              >
-                <QRCodeSVG
-                  value={`${window.location.origin}/pay/${boardId}`}
-                  size={window.innerWidth < 640 ? 180 : window.innerWidth < 2000 ? 290 : 600}
-                  level="M"
-                  bgColor="#ffffff"
-                  fgColor="#000000"
-                  className="mx-auto border-2 border-white"
-                />
-              </a>
-              <div className="text-yellow-300 mt-3 proj:text-3xl">
-                Min: {boardConfig.minZapAmount} sats
               </div>
             </div>
           </div>
